@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trading Scripts by SMA | TradingView Indicators</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            min-height: 100vh;
+        }
+
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 2rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        header h1 {
+            color: #ff6b6b;
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        header p {
+            color: #666;
+            font-size: 1.1rem;
+        }
+
+        nav {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 1rem;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        nav a {
+            color: #ff6b6b;
+            text-decoration: none;
+            font-weight: 600;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            transition: all 0.3s;
+        }
+
+        nav a:hover {
+            background: #ff6b6b;
+            color: white;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 3rem auto;
+            padding: 0 2rem;
+        }
+
+        .intro {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 2rem;
+            border-radius: 15px;
+            margin-bottom: 3rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .intro h2 {
+            color: #ff6b6b;
+            margin-bottom: 1rem;
+        }
+
+        .intro p {
+            color: #555;
+            line-height: 1.6;
+            font-size: 1.1rem;
+        }
+
+        .support-card {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 1.5rem;
+            border-radius: 15px;
+            margin-bottom: 3rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            text-align: center;
+            border: 2px dashed #ff6b6b;
+        }
+
+        .support-card h3 {
+            color: #ff6b6b;
+            margin-bottom: 0.8rem;
+            font-size: 1.2rem;
+        }
+
+        .support-card p {
+            color: #666;
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+        }
+
+        .wallet-address {
+            background: #fff;
+            padding: 0.8rem;
+            border-radius: 10px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.85rem;
+            color: #333;
+            border: 1px solid #ffd1d1;
+            word-break: break-all;
+            margin-top: 0.5rem;
+        }
+
+        .section-title {
+            text-align: center;
+            color: #fff;
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .indicators-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .indicator-card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .indicator-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+
+        .indicator-card h3 {
+            color: #ff6b6b;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .indicator-card p {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .indicator-card .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .tag {
+            background: #ffe5e5;
+            color: #ff6b6b;
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .btn {
+            display: inline-block;
+            background: #ff6b6b;
+            color: white;
+            padding: 0.8rem 2rem;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .btn:hover {
+            background: #ff5252;
+            transform: scale(1.05);
+        }
+
+        footer {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 2rem;
+            text-align: center;
+            margin-top: 3rem;
+        }
+
+        footer p {
+            color: #666;
+        }
+
+        .placeholder-img {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, #ffeaa7 0%, #74b9ff 100%);
+            border-radius: 10px;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>📈 Trading Scripts by SMA</h1>
+        <p>Professional TradingView Indicators</p>
+    </header>
+
+    <nav>
+        <a href="#indicators">Public Scripts</a>
+    </nav>
+
+    <div class="container">
+        <div class="intro">
+            <h2>Welcome!</h2>
+            <p>Here you'll find my custom indicators and scripts for TradingView. All developed with Pine Script to help you improve your technical analysis and make better trading decisions.</p>
+        </div>
+
+        <div class="support-card">
+            <h3>☕ Support My Work</h3>
+            <p>If you find my indicators helpful, consider supporting the development!</p>
+            <p style="font-weight: 600; color: #ff6b6b; margin-bottom: 0.3rem;">Bitcoin (BTC)</p>
+            <div class="wallet-address">
+                bc1qac9czjvdkexzf7v7atg0m2g4gj7q3sxn7yn00d
+            </div>
+        </div>
+
+        <h2 class="section-title" id="indicators">📊 Public Indicators</h2>
+        <div class="indicators-grid">
+            <!-- Indicator 1 - EDIT WITH YOUR DATA -->
+            <div class="indicator-card">
+                <div class="placeholder-img">Screenshot</div>
+                <h3>Indicator Name 1</h3>
+                <div class="tags">
+                    <span class="tag">Trend</span>
+                    <span class="tag">Momentum</span>
+                </div>
+                <p>Brief description of what your indicator does. Explain its main function and what type of trading it's useful for.</p>
+                <a href="https://www.tradingview.com/script/YOURCODE/" target="_blank" class="btn">View on TradingView</a>
+            </div>
+
+            <!-- Indicator 2 - EDIT WITH YOUR DATA -->
+            <div class="indicator-card">
+                <div class="placeholder-img">Screenshot</div>
+                <h3>Indicator Name 2</h3>
+                <div class="tags">
+                    <span class="tag">Volume</span>
+                </div>
+                <p>Brief description of what your indicator does. Explain its main function and what type of trading it's useful for.</p>
+                <a href="https://www.tradingview.com/script/YOURCODE/" target="_blank" class="btn">View on TradingView</a>
+            </div>
+
+            <!-- Indicator 3 - EDIT WITH YOUR DATA -->
+            <div class="indicator-card">
+                <div class="placeholder-img">Screenshot</div>
+                <h3>Indicator Name 3</h3>
+                <div class="tags">
+                    <span class="tag">Oscillator</span>
+                    <span class="tag">Overbought/Oversold</span>
+                </div>
+                <p>Brief description of what your indicator does. Explain its main function and what type of trading it's useful for.</p>
+                <a href="https://www.tradingview.com/script/YOURCODE/" target="_blank" class="btn">View on TradingView</a>
+            </div>
+
+            <!-- Indicator 4 - EDIT WITH YOUR DATA -->
+            <div class="indicator-card">
+                <div class="placeholder-img">Screenshot</div>
+                <h3>Indicator Name 4</h3>
+                <div class="tags">
+                    <span class="tag">Volatility</span>
+                </div>
+                <p>Brief description of what your indicator does. Explain its main function and what type of trading it's useful for.</p>
+                <a href="https://www.tradingview.com/script/YOURCODE/" target="_blank" class="btn">View on TradingView</a>
+            </div>
+
+            <!-- Indicator 5 - EDIT WITH YOUR DATA -->
+            <div class="indicator-card">
+                <div class="placeholder-img">Screenshot</div>
+                <h3>Indicator Name 5</h3>
+                <div class="tags">
+                    <span class="tag">Multi-Timeframe</span>
+                    <span class="tag">Strategy</span>
+                </div>
+                <p>Brief description of what your indicator does. Explain its main function and what type of trading it's useful for.</p>
+                <a href="https://www.tradingview.com/script/YOURCODE/" target="_blank" class="btn">View on TradingView</a>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>© 2025 Trading Scripts by SMA | All rights reserved</p>
+        <p>Developed with ❤️ for the trading community</p>
+    </footer>
+</body>
+</html>
