@@ -83,6 +83,43 @@
             font-size: 1.1rem;
         }
 
+        .latest-updates {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 2rem;
+            border-radius: 15px;
+            margin-bottom: 3rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .latest-updates h2 {
+            color: #ff6b6b;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .update-item {
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border-left: 4px solid #ff6b6b;
+            background: #fff;
+            border-radius: 8px;
+        }
+
+        .update-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .update-date {
+            color: #999;
+            font-size: 0.85rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .update-text {
+            color: #555;
+            font-size: 1rem;
+        }
+
         .support-card {
             background: rgba(255, 255, 255, 0.95);
             padding: 1.5rem;
@@ -121,6 +158,43 @@
 
         .arrow.open {
             transform: rotate(180deg);
+        }
+
+        .support-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+
+        .support-content.open {
+            max-height: 200px;
+            margin-top: 1rem;
+        }
+
+        .support-card p {
+            color: #666;
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+        }
+
+        .wallet-address {
+            background: #fff;
+            padding: 0.8rem;
+            border-radius: 10px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.85rem;
+            color: #333;
+            border: 1px solid #ffd1d1;
+            word-break: break-all;
+            margin-top: 0.5rem;
+        }
+
+        .section-title {
+            text-align: center;
+            color: #fff;
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
         }
 
         .search-filter-container {
@@ -172,80 +246,6 @@
         .filter-btn.active {
             background: #ff6b6b;
             color: white;
-        }
-
-        .latest-updates {
-            background: rgba(255, 255, 255, 0.95);
-            padding: 2rem;
-            border-radius: 15px;
-            margin-bottom: 3rem;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        }
-
-        .latest-updates h2 {
-            color: #ff6b6b;
-            margin-bottom: 1.5rem;
-            text-align: center;
-        }
-
-        .update-item {
-            padding: 1rem;
-            margin-bottom: 1rem;
-            border-left: 4px solid #ff6b6b;
-            background: #fff;
-            border-radius: 8px;
-        }
-
-        .update-item:last-child {
-            margin-bottom: 0;
-        }
-
-        .update-date {
-            color: #999;
-            font-size: 0.85rem;
-            margin-bottom: 0.3rem;
-        }
-
-        .update-text {
-            color: #555;
-            font-size: 1rem;
-        }
-
-        .support-content {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.3s ease-out;
-        }
-
-        .support-content.open {
-            max-height: 200px;
-            margin-top: 1rem;
-        }
-
-        .support-card p {
-            color: #666;
-            font-size: 0.95rem;
-            margin-bottom: 1rem;
-        }
-
-        .wallet-address {
-            background: #fff;
-            padding: 0.8rem;
-            border-radius: 10px;
-            font-family: 'Courier New', monospace;
-            font-size: 0.85rem;
-            color: #333;
-            border: 1px solid #ffd1d1;
-            word-break: break-all;
-            margin-top: 0.5rem;
-        }
-
-        .section-title {
-            text-align: center;
-            color: #fff;
-            font-size: 2rem;
-            margin-bottom: 2rem;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
         }
 
         .indicators-grid {
@@ -322,20 +322,6 @@
         footer p {
             color: #666;
         }
-
-        .placeholder-img {
-            width: 100%;
-            height: 200px;
-            background: linear-gradient(135deg, #ffeaa7 0%, #74b9ff 100%);
-            border-radius: 10px;
-            margin-bottom: 1rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 1.2rem;
-            font-weight: 600;
-        }
     </style>
 </head>
 <body>
@@ -380,69 +366,20 @@
             </div>
         </div>
 
-        <script>
-            function toggleSupport() {
-                const content = document.getElementById('supportContent');
-                const arrow = document.getElementById('arrow');
-                content.classList.toggle('open');
-                arrow.classList.toggle('open');
-            }
-
-            let currentCategory = 'all';
-
-            function filterByCategory(category) {
-                currentCategory = category;
-                const cards = document.querySelectorAll('.indicator-card');
-                const buttons = document.querySelectorAll('.filter-btn');
-                
-                // Update active button
-                buttons.forEach(btn => btn.classList.remove('active'));
-                event.target.classList.add('active');
-                
-                // Filter cards
-                cards.forEach(card => {
-                    if (category === 'all') {
-                        card.style.display = 'block';
-                    } else {
-                        const categories = card.getAttribute('data-category');
-                        if (categories.includes(category)) {
-                            card.style.display = 'block';
-                        } else {
-                            card.style.display = 'none';
-                        }
-                    }
-                });
-                
-                // Apply search filter if exists
-                const searchValue = document.getElementById('searchBox').value;
-                if (searchValue) {
-                    filterIndicators();
-                }
-            }
-
-            function filterIndicators() {
-                const searchValue = document.getElementById('searchBox').value.toLowerCase();
-                const cards = document.querySelectorAll('.indicator-card');
-                
-                cards.forEach(card => {
-                    const name = card.getAttribute('data-name');
-                    const categories = card.getAttribute('data-category');
-                    
-                    const matchesSearch = name.includes(searchValue);
-                    const matchesCategory = currentCategory === 'all' || categories.includes(currentCategory);
-                    
-                    if (matchesSearch && matchesCategory) {
-                        card.style.display = 'block';
-                    } else {
-                        card.style.display = 'none';
-                    }
-                });
-            }
-        </script>
-
         <h2 class="section-title" id="indicators">📊 Indicators</h2>
+
+        <div class="search-filter-container">
+            <input type="text" class="search-box" id="searchBox" placeholder="🔍 Search indicators by name..." onkeyup="filterIndicators()">
+            
+            <div class="filter-buttons">
+                <button class="filter-btn active" onclick="filterByCategory('all')">All</button>
+                <button class="filter-btn" onclick="filterByCategory('trend-volume')">Trend & Volume</button>
+                <button class="filter-btn" onclick="filterByCategory('support-resistance')">Support/Resistance</button>
+                <button class="filter-btn" onclick="filterByCategory('patterns')">Patterns</button>
+            </div>
+        </div>
+
         <div class="indicators-grid">
-            <!-- Indicator 1 - VoluTrend (53 boosts) -->
             <div class="indicator-card" data-category="trend-volume support-resistance" data-name="volutrend auto trendlines volume">
                 <img src="https://s3.tradingview.com/z/ZxVkoUnF_mid.webp?v=1752780683" alt="VoluTrend Indicator" style="width: 100%; height: 200px; object-fit: cover; border-radius: 10px; margin-bottom: 1rem;">
                 <h3>VoluTrend | Auto Trendlines + Volume</h3>
@@ -458,7 +395,6 @@
                 <a href="https://www.tradingview.com/script/ZxVkoUnF/" target="_blank" class="btn">View on TradingView</a>
             </div>
 
-            <!-- Indicator 2 - Order Flow Entry Quality Scanner (30 boosts) -->
             <div class="indicator-card" data-category="trend-volume" data-name="order flow entry quality scanner">
                 <img src="https://s3.tradingview.com/g/gcgP0FSR_mid.webp?v=1756618680" alt="Order Flow Entry Quality Scanner" style="width: 100%; height: 200px; object-fit: cover; border-radius: 10px; margin-bottom: 1rem;">
                 <h3>Order Flow Entry Quality Scanner</h3>
@@ -474,7 +410,6 @@
                 <a href="https://www.tradingview.com/script/gcgP0FSR/" target="_blank" class="btn">View on TradingView</a>
             </div>
 
-            <!-- Indicator 3 - Price Range Tracker (10 boosts) -->
             <div class="indicator-card" data-category="support-resistance" data-name="price range tracker">
                 <img src="https://s3.tradingview.com/m/MSuCPO5Y_mid.webp?v=1754173735" alt="Price Range Tracker" style="width: 100%; height: 200px; object-fit: cover; border-radius: 10px; margin-bottom: 1rem;">
                 <h3>Price Range Tracker</h3>
@@ -490,7 +425,6 @@
                 <a href="https://www.tradingview.com/script/MSuCPO5Y/" target="_blank" class="btn">View on TradingView</a>
             </div>
 
-            <!-- Indicator 4 - Candlestick Pattern (3 boosts) -->
             <div class="indicator-card" data-category="patterns" data-name="candlestick pattern">
                 <img src="https://s3.tradingview.com/l/L4aOTZ7S_mid.webp?v=1758167762" alt="Candlestick Pattern" style="width: 100%; height: 200px; object-fit: cover; border-radius: 10px; margin-bottom: 1rem;">
                 <h3>Candlestick Pattern</h3>
@@ -506,7 +440,6 @@
                 <a href="https://www.tradingview.com/script/L4aOTZ7S/" target="_blank" class="btn">View on TradingView</a>
             </div>
 
-            <!-- Indicator 5 - Wave Surge (2 boosts) -->
             <div class="indicator-card" data-category="trend-volume" data-name="wave surge">
                 <img src="https://s3.tradingview.com/c/cZwLtEdS_mid.webp?v=1759387594" alt="Wave Surge" style="width: 100%; height: 200px; object-fit: cover; border-radius: 10px; margin-bottom: 1rem;">
                 <h3>Wave Surge</h3>
@@ -528,5 +461,62 @@
         <p>© 2025 Trading Scripts by SMA | All rights reserved</p>
         <p>Developed with ❤️ for the trading community</p>
     </footer>
+
+    <script>
+        function toggleSupport() {
+            const content = document.getElementById('supportContent');
+            const arrow = document.getElementById('arrow');
+            content.classList.toggle('open');
+            arrow.classList.toggle('open');
+        }
+
+        let currentCategory = 'all';
+
+        function filterByCategory(category) {
+            currentCategory = category;
+            const cards = document.querySelectorAll('.indicator-card');
+            const buttons = document.querySelectorAll('.filter-btn');
+            
+            buttons.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            cards.forEach(card => {
+                if (category === 'all') {
+                    card.style.display = 'block';
+                } else {
+                    const categories = card.getAttribute('data-category');
+                    if (categories.includes(category)) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                }
+            });
+            
+            const searchValue = document.getElementById('searchBox').value;
+            if (searchValue) {
+                filterIndicators();
+            }
+        }
+
+        function filterIndicators() {
+            const searchValue = document.getElementById('searchBox').value.toLowerCase();
+            const cards = document.querySelectorAll('.indicator-card');
+            
+            cards.forEach(card => {
+                const name = card.getAttribute('data-name');
+                const categories = card.getAttribute('data-category');
+                
+                const matchesSearch = name.includes(searchValue);
+                const matchesCategory = currentCategory === 'all' || categories.includes(currentCategory);
+                
+                if (matchesSearch && matchesCategory) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+    </script>
 </body>
 </html>
