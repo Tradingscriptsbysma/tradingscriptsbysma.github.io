@@ -91,12 +91,135 @@
             box-shadow: 0 5px 15px rgba(0,0,0,0.1);
             text-align: center;
             border: 2px dashed #ff6b6b;
+            cursor: pointer;
+            transition: all 0.3s;
         }
 
-        .support-card h3 {
+        .support-card:hover {
+            border-color: #ff5252;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+        }
+
+        .support-header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .support-header h3 {
             color: #ff6b6b;
-            margin-bottom: 0.8rem;
+            margin: 0;
             font-size: 1.2rem;
+        }
+
+        .arrow {
+            transition: transform 0.3s;
+            font-size: 1.2rem;
+            color: #ff6b6b;
+        }
+
+        .arrow.open {
+            transform: rotate(180deg);
+        }
+
+        .search-filter-container {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 2rem;
+            border-radius: 15px;
+            margin-bottom: 2rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .search-box {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid #ffd1d1;
+            border-radius: 25px;
+            font-size: 1rem;
+            margin-bottom: 1.5rem;
+            transition: border-color 0.3s;
+        }
+
+        .search-box:focus {
+            outline: none;
+            border-color: #ff6b6b;
+        }
+
+        .filter-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .filter-btn {
+            background: #fff;
+            color: #ff6b6b;
+            border: 2px solid #ff6b6b;
+            padding: 0.6rem 1.5rem;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .filter-btn:hover {
+            background: #ffe5e5;
+        }
+
+        .filter-btn.active {
+            background: #ff6b6b;
+            color: white;
+        }
+
+        .latest-updates {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 2rem;
+            border-radius: 15px;
+            margin-bottom: 3rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .latest-updates h2 {
+            color: #ff6b6b;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .update-item {
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border-left: 4px solid #ff6b6b;
+            background: #fff;
+            border-radius: 8px;
+        }
+
+        .update-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .update-date {
+            color: #999;
+            font-size: 0.85rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .update-text {
+            color: #555;
+            font-size: 1rem;
+        }
+
+        .support-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+
+        .support-content.open {
+            max-height: 200px;
+            margin-top: 1rem;
         }
 
         .support-card p {
@@ -222,7 +345,7 @@
     </header>
 
     <nav>
-        <a href="#indicators">Public Scripts</a>
+        <a href="#indicators">Indicators</a>
     </nav>
 
     <div class="container">
@@ -231,19 +354,96 @@
             <p>Here you'll find my custom indicators and scripts for TradingView. All developed with Pine Script to help you improve your technical analysis and make better trading decisions.</p>
         </div>
 
-        <div class="support-card">
-            <h3>☕ Support My Work</h3>
-            <p>If you find my indicators helpful, consider supporting the development!</p>
-            <p style="font-weight: 600; color: #ff6b6b; margin-bottom: 0.3rem;">Bitcoin (BTC)</p>
-            <div class="wallet-address">
-                bc1qac9czjvdkexzf7v7atg0m2g4gj7q3sxn7yn00d
+        <div class="latest-updates">
+            <h2>🔔 Latest Updates</h2>
+            <div class="update-item">
+                <div class="update-date">January 2025</div>
+                <div class="update-text">🆕 New Indicator: <strong>Wave Surge</strong></div>
+            </div>
+            <div class="update-item">
+                <div class="update-date">January 2025</div>
+                <div class="update-text">🆕 New Indicator: <strong>Candlestick Pattern</strong></div>
             </div>
         </div>
 
-        <h2 class="section-title" id="indicators">📊 Public Indicators</h2>
+        <div class="support-card" onclick="toggleSupport()">
+            <div class="support-header">
+                <h3>☕ Support My Work</h3>
+                <span class="arrow" id="arrow">▼</span>
+            </div>
+            <div class="support-content" id="supportContent">
+                <p>If you find my indicators helpful, consider supporting the development!</p>
+                <p style="font-weight: 600; color: #ff6b6b; margin-bottom: 0.3rem;">Bitcoin (BTC)</p>
+                <div class="wallet-address">
+                    bc1qac9czjvdkexzf7v7atg0m2g4gj7q3sxn7yn00d
+                </div>
+            </div>
+        </div>
+
+        <script>
+            function toggleSupport() {
+                const content = document.getElementById('supportContent');
+                const arrow = document.getElementById('arrow');
+                content.classList.toggle('open');
+                arrow.classList.toggle('open');
+            }
+
+            let currentCategory = 'all';
+
+            function filterByCategory(category) {
+                currentCategory = category;
+                const cards = document.querySelectorAll('.indicator-card');
+                const buttons = document.querySelectorAll('.filter-btn');
+                
+                // Update active button
+                buttons.forEach(btn => btn.classList.remove('active'));
+                event.target.classList.add('active');
+                
+                // Filter cards
+                cards.forEach(card => {
+                    if (category === 'all') {
+                        card.style.display = 'block';
+                    } else {
+                        const categories = card.getAttribute('data-category');
+                        if (categories.includes(category)) {
+                            card.style.display = 'block';
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    }
+                });
+                
+                // Apply search filter if exists
+                const searchValue = document.getElementById('searchBox').value;
+                if (searchValue) {
+                    filterIndicators();
+                }
+            }
+
+            function filterIndicators() {
+                const searchValue = document.getElementById('searchBox').value.toLowerCase();
+                const cards = document.querySelectorAll('.indicator-card');
+                
+                cards.forEach(card => {
+                    const name = card.getAttribute('data-name');
+                    const categories = card.getAttribute('data-category');
+                    
+                    const matchesSearch = name.includes(searchValue);
+                    const matchesCategory = currentCategory === 'all' || categories.includes(currentCategory);
+                    
+                    if (matchesSearch && matchesCategory) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            }
+        </script>
+
+        <h2 class="section-title" id="indicators">📊 Indicators</h2>
         <div class="indicators-grid">
             <!-- Indicator 1 - VoluTrend (53 boosts) -->
-            <div class="indicator-card">
+            <div class="indicator-card" data-category="trend-volume support-resistance" data-name="volutrend auto trendlines volume">
                 <img src="https://s3.tradingview.com/z/ZxVkoUnF_mid.webp?v=1752780683" alt="VoluTrend Indicator" style="width: 100%; height: 200px; object-fit: cover; border-radius: 10px; margin-bottom: 1rem;">
                 <h3>VoluTrend | Auto Trendlines + Volume</h3>
                 <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem;">
@@ -259,7 +459,7 @@
             </div>
 
             <!-- Indicator 2 - Order Flow Entry Quality Scanner (30 boosts) -->
-            <div class="indicator-card">
+            <div class="indicator-card" data-category="trend-volume" data-name="order flow entry quality scanner">
                 <img src="https://s3.tradingview.com/g/gcgP0FSR_mid.webp?v=1756618680" alt="Order Flow Entry Quality Scanner" style="width: 100%; height: 200px; object-fit: cover; border-radius: 10px; margin-bottom: 1rem;">
                 <h3>Order Flow Entry Quality Scanner</h3>
                 <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem;">
@@ -275,7 +475,7 @@
             </div>
 
             <!-- Indicator 3 - Price Range Tracker (10 boosts) -->
-            <div class="indicator-card">
+            <div class="indicator-card" data-category="support-resistance" data-name="price range tracker">
                 <img src="https://s3.tradingview.com/m/MSuCPO5Y_mid.webp?v=1754173735" alt="Price Range Tracker" style="width: 100%; height: 200px; object-fit: cover; border-radius: 10px; margin-bottom: 1rem;">
                 <h3>Price Range Tracker</h3>
                 <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem;">
@@ -291,7 +491,7 @@
             </div>
 
             <!-- Indicator 4 - Candlestick Pattern (3 boosts) -->
-            <div class="indicator-card">
+            <div class="indicator-card" data-category="patterns" data-name="candlestick pattern">
                 <img src="https://s3.tradingview.com/l/L4aOTZ7S_mid.webp?v=1758167762" alt="Candlestick Pattern" style="width: 100%; height: 200px; object-fit: cover; border-radius: 10px; margin-bottom: 1rem;">
                 <h3>Candlestick Pattern</h3>
                 <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem;">
@@ -307,7 +507,7 @@
             </div>
 
             <!-- Indicator 5 - Wave Surge (2 boosts) -->
-            <div class="indicator-card">
+            <div class="indicator-card" data-category="trend-volume" data-name="wave surge">
                 <img src="https://s3.tradingview.com/c/cZwLtEdS_mid.webp?v=1759387594" alt="Wave Surge" style="width: 100%; height: 200px; object-fit: cover; border-radius: 10px; margin-bottom: 1rem;">
                 <h3>Wave Surge</h3>
                 <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem;">
