@@ -144,24 +144,56 @@
         }
 
         .price-box {
-            background: linear-gradient(135deg, #5a4a35 0%, #3d3020 100%);
+            background: rgba(30, 30, 30, 0.95);
             border: 2px solid #f7931a;
-            padding: 1.5rem;
-            border-radius: 15px;
-            max-width: 400px;
+            padding: 1.2rem 1.5rem;
+            border-radius: 20px;
+            max-width: 320px;
             margin: 0 auto 2rem;
+            box-shadow: 0 8px 25px rgba(247, 147, 26, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .price-box:before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(247, 147, 26, 0.1), transparent);
+            animation: shine 3s infinite;
+        }
+
+        @keyframes shine {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
         }
 
         .price-box .amount {
             color: #f7931a;
-            font-size: 2.5rem;
-            font-weight: 800;
-            margin-bottom: 0.5rem;
+            font-size: 2.2rem;
+            font-weight: 900;
+            margin-bottom: 0.3rem;
+            text-shadow: 0 0 20px rgba(247, 147, 26, 0.5);
+            position: relative;
+            z-index: 1;
+        } {
+            color: #f7931a;
+            font-size: 2.2rem;
+            font-weight: 900;
+            margin-bottom: 0.3rem;
+            text-shadow: 0 0 20px rgba(247, 147, 26, 0.5);
+            position: relative;
+            z-index: 1;
         }
 
         .price-box .usd {
             color: #aaa;
-            font-size: 1.2rem;
+            font-size: 1.1rem;
+            position: relative;
+            z-index: 1;
         }
 
         .cta-buttons {
@@ -173,20 +205,47 @@
         }
 
         .btn-primary {
-            background: #f7931a;
+            background: linear-gradient(135deg, #f7931a 0%, #ff6b35 50%, #f7931a 100%);
+            background-size: 200% 200%;
             color: white;
-            padding: 1rem 2.5rem;
-            border-radius: 25px;
+            padding: 1rem 3rem;
+            border-radius: 30px;
             text-decoration: none;
             font-weight: 700;
-            font-size: 1.1rem;
+            font-size: 1.2rem;
             transition: all 0.3s;
             display: inline-block;
+            box-shadow: 0 8px 25px rgba(247, 147, 26, 0.4);
+            animation: gradient-shift 3s ease infinite;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary:before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transform: rotate(45deg);
+            animation: btn-shine 3s infinite;
+        }
+
+        @keyframes gradient-shift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        @keyframes btn-shine {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
         }
 
         .btn-primary:hover {
-            background: #ff9500;
-            transform: scale(1.05);
+            transform: scale(1.05) translateY(-2px);
+            box-shadow: 0 12px 35px rgba(247, 147, 26, 0.6);
         }
 
         .qr-box {
@@ -221,6 +280,25 @@
             border-radius: 15px;
             margin-bottom: 3rem;
             box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            border: 2px solid #f7931a;
+        }
+
+        .bot-message-header {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .bot-label {
+            background: #f7931a;
+            color: white;
+            padding: 0.4rem 1.2rem;
+            border-radius: 20px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
         .bot-message-container {
@@ -230,46 +308,61 @@
         }
 
         .bot-avatar-small {
-            width: 60px;
-            height: 60px;
+            width: 70px;
+            height: 70px;
             border-radius: 50%;
             background: #252525;
-            border: 2px solid #f7931a;
+            border: 3px solid #f7931a;
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 1.5rem;
             flex-shrink: 0;
+            box-shadow: 0 0 20px rgba(247, 147, 26, 0.5);
         }
 
         .message-bubble {
-            background: linear-gradient(135deg, #5a4a35 0%, #3d3020 100%);
-            padding: 1.5rem;
+            background: linear-gradient(135deg, #2a2a2a 0%, #1a1a1a 100%);
+            padding: 1.8rem;
             border-radius: 15px;
             position: relative;
-            border: 1px solid #6b5940;
+            border: 2px solid #444;
+            flex: 1;
         }
 
         .message-bubble:before {
             content: '';
             position: absolute;
-            left: -10px;
-            top: 20px;
+            left: -12px;
+            top: 25px;
+            width: 0;
+            height: 0;
+            border-style: solid;
+            border-width: 12px 12px 12px 0;
+            border-color: transparent #444 transparent transparent;
+        }
+
+        .message-bubble:after {
+            content: '';
+            position: absolute;
+            left: -9px;
+            top: 27px;
             width: 0;
             height: 0;
             border-style: solid;
             border-width: 10px 10px 10px 0;
-            border-color: transparent #3d3020 transparent transparent;
+            border-color: transparent #1a1a1a transparent transparent;
         }
 
         .message-bubble p {
-            color: #e6d5b8;
-            line-height: 1.6;
+            color: #e6e6e6;
+            line-height: 1.7;
             font-size: 1.1rem;
         }
 
         .message-bubble strong {
             color: #f7931a;
+            font-weight: 700;
         }
 
         .features-grid {
@@ -367,20 +460,6 @@
             color: #f7931a;
             font-weight: bold;
             margin-right: 0.5rem;
-        }
-
-        .signal-card .example-img {
-            width: 100%;
-            height: 150px;
-            background: #252525;
-            border-radius: 10px;
-            margin-bottom: 1rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #555;
-            font-size: 0.85rem;
-            border: 1px dashed #444;
         }
 
         .faq-section {
@@ -481,7 +560,8 @@
                 text-align: center;
             }
 
-            .message-bubble:before {
+            .message-bubble:before,
+            .message-bubble:after {
                 display: none;
             }
         }
@@ -491,7 +571,7 @@
     <header>
         <div class="header-left">
             <div class="bot-avatar">
-                👁️
+                <img src="https://raw.githubusercontent.com/Tradingscriptsbysma/tradingscriptsbysma.github.io/main/images/Bot%20avatar.png" alt="BitcoinEye" style="width: 100%; height: 100%; border-radius: 50%; object-fit: cover;">
             </div>
             <div class="header-title">
                 <h1>BitcoinEye</h1>
@@ -504,7 +584,7 @@
     </header>
 
     <nav>
-        <a href="#" data-es="Trading Scripts" data-en="Trading Scripts">Trading Scripts</a>
+        <a href="index.html" data-es="Trading Scripts" data-en="Trading Scripts">Trading Scripts</a>
         <a href="#inicio" data-es="Inicio" data-en="Home">Inicio</a>
         <a href="#señales" data-es="Señales" data-en="Signals">Señales</a>
         <a href="#faq" data-es="FAQ" data-en="FAQ">FAQ</a>
@@ -521,10 +601,12 @@
             </div>
 
             <div class="cta-buttons">
-                <a href="#" class="btn-primary" data-es="Unirse al Canal 🚀" data-en="Join Channel 🚀">Unirse al Canal 🚀</a>
+                <a href="https://t.me/+uF_JsoFZMPtlZGY5" target="_blank" class="btn-primary" data-es="Unirse" data-en="Join">Unirse</a>
                 <div class="qr-box">
                     <p data-es="Escanea el QR" data-en="Scan QR">Escanea el QR</p>
-                    <div class="qr-placeholder">[QR Code]</div>
+                    <div class="qr-placeholder">
+                        <img src="https://raw.githubusercontent.com/Tradingscriptsbysma/tradingscriptsbysma.github.io/main/images/qr.png" alt="QR Code" style="width: 100%; height: 100%; object-fit: contain;">
+                    </div>
                 </div>
             </div>
         </div>
@@ -533,10 +615,10 @@
         <div class="bot-message">
             <div class="bot-message-container">
                 <div class="bot-avatar-small">
-                    👁️
+                    <img src="https://raw.githubusercontent.com/Tradingscriptsbysma/tradingscriptsbysma.github.io/main/images/Bot%20avatar.png" alt="BitcoinEye" style="width: 100%; height: 100%; border-radius: 50%; object-fit: cover;">
                 </div>
                 <div class="message-bubble">
-                    <p data-es="Soy <strong>BitcoinEye</strong>, un bot automatizado que analiza el par BTC/USDT de Binance y envío señales de trading directo al canal de Telegram. El canal es <strong>100% señales</strong> - sin spam, sin mensajes extra, solo alertas precisas cuando las condiciones técnicas son óptimas." 
+                    <p data-es="Soy <strong>BitcoinEye</strong>, un bot automatizado que analiza el par BTC/USDT de Binance y envía señales de trading directo al canal de Telegram. El canal es <strong>100% señales</strong> - sin spam, sin mensajes extra, solo alertas precisas cuando las condiciones técnicas son óptimas." 
                        data-en="I'm <strong>BitcoinEye</strong>, an automated bot that analyzes the BTC/USDT pair from Binance and sends trading signals directly to the Telegram channel. The channel is <strong>100% signals</strong> - no spam, no extra messages, just accurate alerts when technical conditions are optimal.">
                         Soy <strong>BitcoinEye</strong>, un bot automatizado que analiza el par BTC/USDT de Binance y envío señales de trading directo al canal de Telegram. El canal es <strong>100% señales</strong> - sin spam, sin mensajes extra, solo alertas precisas cuando las condiciones técnicas son óptimas.
                     </p>
@@ -563,7 +645,6 @@
         <h2 class="section-title" id="señales" data-es="📊 Tipos de Señales (4)" data-en="📊 Signal Types (4)">📊 Tipos de Señales (4)</h2>
         <div class="signals-grid">
             <div class="signal-card long">
-                <div class="example-img">[Ejemplo LONG]</div>
                 <h3>📈 LONG TREND</h3>
                 <ul>
                     <li data-es="Precio de entrada" data-en="Entry price">Precio de entrada</li>
@@ -574,7 +655,6 @@
             </div>
             
             <div class="signal-card short">
-                <div class="example-img">[Ejemplo SHORT]</div>
                 <h3>📉 SHORT TREND</h3>
                 <ul>
                     <li data-es="Precio de entrada" data-en="Entry price">Precio de entrada</li>
@@ -585,7 +665,6 @@
             </div>
             
             <div class="signal-card counter">
-                <div class="example-img">[Ejemplo COUNTER]</div>
                 <h3 data-es="🔄 COUNTER TREND (Alcista)" data-en="🔄 COUNTER TREND (Bullish)">🔄 COUNTER TREND (Alcista)</h3>
                 <ul>
                     <li data-es="Precio de entrada" data-en="Entry price">Precio de entrada</li>
@@ -596,7 +675,6 @@
             </div>
             
             <div class="signal-card counter">
-                <div class="example-img">[Ejemplo COUNTER]</div>
                 <h3 data-es="🔄 COUNTER TREND (Bajista)" data-en="🔄 COUNTER TREND (Bearish)">🔄 COUNTER TREND (Bajista)</h3>
                 <ul>
                     <li data-es="Precio de entrada" data-en="Entry price">Precio de entrada</li>
@@ -678,9 +756,7 @@
     <footer>
         <p data-es="📞 Contacto" data-en="📞 Contact">📞 Contacto</p>
         <p>
-            <span data-es="Canal:" data-en="Channel:">Canal:</span> <a href="#">t.me/tu_canal</a> | 
-            <span data-es="Soporte:" data-en="Support:">Soporte:</span> <a href="#">@tu_usuario</a> |
-            X: <a href="#">@tu_x</a>
+            X: <a href="https://x.com/sma77_sss" target="_blank">@sma77_sss</a>
         </p>
         <p style="margin-top: 1rem;">© 2025 BitcoinEye. <span data-es="Todos los derechos reservados." data-en="All rights reserved.">Todos los derechos reservados.</span></p>
     </footer>
@@ -701,7 +777,7 @@
             document.querySelectorAll('[data-es]').forEach(element => {
                 const text = element.getAttribute('data-' + lang);
                 // Use textContent for simple text elements
-                if (element.tagName === 'A' || element.tagName === 'BUTTON' || element.tagName === 'H1' || element.tagName === 'H2' || element.tagName === 'H3' || element.tagName === 'SPAN' || element.classList.contains('amount')) {
+                if (element.tagName === 'A' || element.tagName === 'BUTTON' || element.tagName === 'H1' || element.tagName === 'H2' || element.tagName === 'H3' || element.tagName === 'SPAN' || element.classList.contains('amount') || element.classList.contains('bot-label')) {
                     element.textContent = text;
                 } else {
                     // Use innerHTML for elements that might contain HTML tags
