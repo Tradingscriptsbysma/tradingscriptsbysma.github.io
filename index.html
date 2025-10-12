@@ -1,4 +1,8 @@
-<!DOCTYPE html>
+nav a:last-child:hover {
+            background: linear-gradient(135deg, #ff6b35 0%, #f7931a 100%);
+            transform: scale(1.05);
+            box-shadow: 0 6px 20px rgba(255, 107, 53, 0.6);
+        }<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -13,7 +17,7 @@
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #3d3020 0%, #4a3a28 100%);
+            background: linear-gradient(135deg, #1a0a0f 0%, #2d1520 100%);
             min-height: 100vh;
         }
 
@@ -21,11 +25,46 @@
             background: rgba(30, 30, 30, 0.95);
             padding: 2rem;
             box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+            position: relative;
+        }
+
+        .header-content {
             text-align: center;
         }
 
+        .language-toggle {
+            position: absolute;
+            top: 2rem;
+            right: 2rem;
+            display: flex;
+            gap: 0.5rem;
+            background: #252525;
+            padding: 0.5rem;
+            border-radius: 20px;
+        }
+
+        .lang-btn {
+            background: transparent;
+            color: #aaa;
+            border: none;
+            padding: 0.4rem 1rem;
+            border-radius: 15px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .lang-btn.active {
+            background: #e11d48;
+            color: white;
+        }
+
+        .lang-btn:hover:not(.active) {
+            background: #333;
+        }
+
         header h1 {
-            background: linear-gradient(135deg, #f7931a 0%, #ffb84d 50%, #f7931a 100%);
+            background: linear-gradient(135deg, #e11d48 0%, #be123c 50%, #e11d48 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -33,16 +72,16 @@
             margin-bottom: 0.5rem;
             font-weight: 800;
             letter-spacing: 2px;
-            text-shadow: 0 0 30px rgba(247, 147, 26, 0.3);
+            text-shadow: 0 0 30px rgba(225, 29, 72, 0.3);
             animation: glow 2s ease-in-out infinite alternate;
         }
 
         @keyframes glow {
             from {
-                filter: drop-shadow(0 0 10px rgba(247, 147, 26, 0.5));
+                filter: drop-shadow(0 0 10px rgba(225, 29, 72, 0.5));
             }
             to {
-                filter: drop-shadow(0 0 20px rgba(247, 147, 26, 0.8));
+                filter: drop-shadow(0 0 20px rgba(225, 29, 72, 0.8));
             }
         }
 
@@ -61,7 +100,7 @@
         }
 
         nav a {
-            color: #f7931a;
+            color: #e11d48;
             text-decoration: none;
             font-weight: 600;
             padding: 0.5rem 1rem;
@@ -69,9 +108,27 @@
             transition: all 0.3s;
         }
 
-        nav a:hover {
-            background: #f7931a;
+        nav a:last-child {
+            background: linear-gradient(135deg, #ff6b35 0%, #f7931a 100%);
+            background-size: 200% 200%;
             color: white;
+            box-shadow: 0 4px 15px rgba(255, 107, 53, 0.4);
+            animation: gradient-shift 3s ease infinite;
+        }
+
+        @keyframes gradient-shift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        nav a:hover {
+            background: #e11d48;
+            color: white;
+        }
+
+        nav a:last-child:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 20px rgba(247, 147, 26, 0.6);
         }
 
         .container {
@@ -116,7 +173,7 @@
         .update-item {
             padding: 1rem;
             margin-bottom: 1rem;
-            border-left: 4px solid #f7931a;
+            border-left: 4px solid #e11d48;
             background: #252525;
             border-radius: 8px;
         }
@@ -146,6 +203,116 @@
             border: 2px dashed #ff5555;
             cursor: pointer;
             transition: all 0.3s;
+        }
+
+        .bot-promo-card {
+            background: linear-gradient(135deg, rgba(247, 147, 26, 0.15) 0%, rgba(255, 184, 77, 0.15) 100%);
+            padding: 2.5rem;
+            border-radius: 20px;
+            margin-bottom: 3rem;
+            box-shadow: 0 8px 25px rgba(247, 147, 26, 0.3);
+            border: 2px solid rgba(247, 147, 26, 0.5);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .bot-promo-card:before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(247, 147, 26, 0.1), transparent);
+            animation: shine 4s infinite;
+        }
+
+        .bot-promo-header {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .bot-promo-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            border: 3px solid #f7931a;
+            box-shadow: 0 0 20px rgba(247, 147, 26, 0.6);
+        }
+
+        .bot-promo-title {
+            text-align: left;
+            flex: 1;
+        }
+
+        .bot-promo-title h3 {
+            color: #e6e6e6;
+            font-size: 1.8rem;
+            margin: 0 0 0.3rem 0;
+        }
+
+        .bot-promo-subtitle {
+            color: #aaa;
+            font-size: 1rem;
+        }
+
+        .bot-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .bot-feature-item {
+            background: rgba(30, 30, 30, 0.8);
+            padding: 1rem;
+            border-radius: 12px;
+            border: 1px solid #444;
+        }
+
+        .bot-feature-item .icon {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .bot-feature-item p {
+            color: #bbb;
+            font-size: 0.9rem;
+            margin: 0;
+        }
+
+        .bot-promo-cta {
+            position: relative;
+            z-index: 1;
+        }
+
+        .btn-bot {
+            display: inline-block;
+            background: linear-gradient(135deg, #f7931a 0%, #ffb84d 100%);
+            color: white;
+            padding: 1rem 3rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+            box-shadow: 0 6px 20px rgba(247, 147, 26, 0.4);
+        }
+
+        .btn-bot:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(247, 147, 26, 0.6);
+        }
+
+        @keyframes shine {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
         }
 
         .support-card:hover {
@@ -235,7 +402,7 @@
 
         .search-box:focus {
             outline: none;
-            border-color: #f7931a;
+            border-color: #e11d48;
         }
 
         .search-box::placeholder {
@@ -251,8 +418,8 @@
 
         .filter-btn {
             background: #252525;
-            color: #f7931a;
-            border: 2px solid #f7931a;
+            color: #e11d48;
+            border: 2px solid #e11d48;
             padding: 0.6rem 1.5rem;
             border-radius: 25px;
             cursor: pointer;
@@ -266,7 +433,7 @@
         }
 
         .filter-btn.active {
-            background: #f7931a;
+            background: #e11d48;
             color: white;
         }
 
@@ -321,7 +488,7 @@
 
         .btn {
             display: inline-block;
-            background: #f7931a;
+            background: #e11d48;
             color: white;
             padding: 0.8rem 2rem;
             border-radius: 25px;
@@ -331,7 +498,7 @@
         }
 
         .btn:hover {
-            background: #ff9500;
+            background: #be123c;
             transform: scale(1.05);
         }
 
@@ -345,43 +512,101 @@
         footer p {
             color: #888;
         }
+
+        @media (max-width: 768px) {
+            .language-toggle {
+                position: static;
+                margin: 1rem auto 0;
+                width: fit-content;
+            }
+
+            .bot-promo-header {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .bot-promo-title {
+                text-align: center;
+            }
+
+            .bot-features {
+                grid-template-columns: 1fr;
+            }
+        }
     </style>
 </head>
 <body>
     <header>
-        <h1>Trading Scripts</h1>
-        <p>Professional TradingView Indicators</p>
+        <div class="header-content">
+            <h1>Trading Scripts</h1>
+            <p data-es="Indicadores Profesionales para TradingView" data-en="Professional TradingView Indicators">Professional TradingView Indicators</p>
+        </div>
+        <div class="language-toggle">
+            <button class="lang-btn" onclick="setLanguage('es')">ES</button>
+            <button class="lang-btn active" onclick="setLanguage('en')">EN</button>
+        </div>
     </header>
 
     <nav>
-        <a href="#indicators">Indicators</a>
+        <a href="#indicators" data-es="Indicadores" data-en="Indicators">Indicators</a>
+        <a href="bitcoineye.html">BitcoinEye Bot</a>
     </nav>
 
     <div class="container">
+        <!-- BitcoinEye Bot Promo -->
+        <div class="bot-promo-card">
+            <div class="bot-promo-header">
+                <img src="https://raw.githubusercontent.com/Tradingscriptsbysma/tradingscriptsbysma.github.io/main/images/Bot%20avatar.png" alt="BitcoinEye Bot" class="bot-promo-avatar">
+                <div class="bot-promo-title">
+                    <h3>BitcoinEye Bot</h3>
+                    <p class="bot-promo-subtitle" data-es="Señales Automáticas BTC/USDT 24/7" data-en="BTC/USDT Automated Signals 24/7">BTC/USDT Automated Signals 24/7</p>
+                </div>
+            </div>
+            
+            <div class="bot-features">
+                <div class="bot-feature-item">
+                    <div class="icon">💰</div>
+                    <p data-es="<strong>400 Stars/mes</strong><br>~USD 5.20" data-en="<strong>400 Stars/month</strong><br>~USD 5.20"><strong>400 Stars/month</strong><br>~USD 5.20</p>
+                </div>
+                <div class="bot-feature-item">
+                    <div class="icon">📊</div>
+                    <p data-es="<strong>4 Tipos de Señales</strong><br>Long, Short y Counter" data-en="<strong>4 Signal Types</strong><br>Long, Short & Counter"><strong>4 Signal Types</strong><br>Long, Short & Counter</p>
+                </div>
+                <div class="bot-feature-item">
+                    <div class="icon">⚡</div>
+                    <p data-es="<strong>Tiempo Real</strong><br>Alertas Instantáneas" data-en="<strong>Real-time</strong><br>Instant Alerts"><strong>Real-time</strong><br>Instant Alerts</p>
+                </div>
+            </div>
+
+            <div class="bot-promo-cta">
+                <a href="bitcoineye.html" class="btn-bot" data-es="Conocer Más →" data-en="Learn More →">Learn More →</a>
+            </div>
+        </div>
+
         <div class="intro">
-            <h2>Welcome!</h2>
-            <p>Here you'll find my custom indicators and scripts for TradingView. All developed with Pine Script to help you improve your technical analysis and make better trading decisions.</p>
+            <h2 data-es="¡Bienvenido!" data-en="Welcome!">Welcome!</h2>
+            <p data-es="Aquí encontrarás mis indicadores y scripts personalizados para TradingView. Todos desarrollados con Pine Script para ayudarte a mejorar tu análisis técnico y tomar mejores decisiones de trading." data-en="Here you'll find my custom indicators and scripts for TradingView. All developed with Pine Script to help you improve your technical analysis and make better trading decisions.">Here you'll find my custom indicators and scripts for TradingView. All developed with Pine Script to help you improve your technical analysis and make better trading decisions.</p>
         </div>
 
         <div class="latest-updates">
-            <h2>🔔 Latest Updates</h2>
+            <h2 data-es="🔔 Últimas Actualizaciones" data-en="🔔 Latest Updates">🔔 Latest Updates</h2>
             <div class="update-item">
-                <div class="update-date">October 2025</div>
-                <div class="update-text">🆕 New Indicator: <strong>Wave Surge</strong></div>
+                <div class="update-date" data-es="Octubre 2025" data-en="October 2025">October 2025</div>
+                <div class="update-text" data-es="Nuevo Indicador: <strong>Wave Surge</strong>" data-en="New Indicator: <strong>Wave Surge</strong>">New Indicator: <strong>Wave Surge</strong></div>
             </div>
             <div class="update-item">
-                <div class="update-date">October 2025</div>
-                <div class="update-text">🆕 New Indicator: <strong>Candlestick Pattern</strong></div>
+                <div class="update-date" data-es="Octubre 2025" data-en="October 2025">October 2025</div>
+                <div class="update-text" data-es="Nuevo Indicador: <strong>Candlestick Pattern</strong>" data-en="New Indicator: <strong>Candlestick Pattern</strong>">New Indicator: <strong>Candlestick Pattern</strong></div>
             </div>
         </div>
 
         <div class="support-card">
             <div class="support-header" onclick="toggleSupport()" style="cursor: pointer;">
-                <h3>☕ Support My Work</h3>
+                <h3 data-es="☕ Apoya Mi Trabajo" data-en="☕ Support My Work">☕ Support My Work</h3>
                 <span class="arrow" id="arrow">▼</span>
             </div>
             <div class="support-content" id="supportContent">
-                <p>If you find my indicators helpful, consider supporting the development!</p>
+                <p data-es="Si mis indicadores te resultan útiles, ¡considera apoyar el desarrollo!" data-en="If you find my indicators helpful, consider supporting the development!">If you find my indicators helpful, consider supporting the development!</p>
                 <p style="font-weight: 600; color: #e6e6e6; margin-bottom: 0.3rem;">Bitcoin (BTC)</p>
                 <div class="wallet-address">
                     bc1qac9czjvdkexzf7v7atg0m2g4gj7q3sxn7yn00d
@@ -389,17 +614,17 @@
             </div>
         </div>
 
-        <h2 class="section-title" id="indicators">📊 Indicators</h2>
+        <h2 class="section-title" id="indicators" data-es="📊 Indicadores" data-en="📊 Indicators">📊 Indicators</h2>
 
         <div class="search-filter-container">
-            <input type="text" class="search-box" id="searchBox" placeholder="🔍 Search indicators by name..." onkeyup="filterIndicators()">
+            <input type="text" class="search-box" id="searchBox" data-placeholder-es="🔍 Buscar indicadores por nombre..." data-placeholder-en="🔍 Search indicators by name..." placeholder="🔍 Search indicators by name..." onkeyup="filterIndicators()">
             
             <div class="filter-buttons">
-                <button class="filter-btn active" onclick="filterByCategory('all')">All</button>
-                <button class="filter-btn" onclick="filterByCategory('trend-volume')">Trend & Volume</button>
-                <button class="filter-btn" onclick="filterByCategory('support-resistance')">Support/Resistance</button>
-                <button class="filter-btn" onclick="filterByCategory('patterns')">Patterns</button>
-                <button class="filter-btn" onclick="filterByCategory('price-action')">Price Action</button>
+                <button class="filter-btn active" onclick="filterByCategory('all')" data-es="Todos" data-en="All">All</button>
+                <button class="filter-btn" onclick="filterByCategory('trend-volume')" data-es="Tendencia y Volumen" data-en="Trend & Volume">Trend & Volume</button>
+                <button class="filter-btn" onclick="filterByCategory('support-resistance')" data-es="Soporte/Resistencia" data-en="Support/Resistance">Support/Resistance</button>
+                <button class="filter-btn" onclick="filterByCategory('patterns')" data-es="Patrones" data-en="Patterns">Patterns</button>
+                <button class="filter-btn" onclick="filterByCategory('price-action')" data-es="Acción del Precio" data-en="Price Action">Price Action</button>
             </div>
         </div>
 
@@ -482,11 +707,47 @@
     </div>
 
     <footer>
-        <p>© 2025 Trading Scripts by SMA | All rights reserved</p>
-        <p>Developed with ❤️ for the trading community</p>
+        <p data-es="© 2025 Trading Scripts by SMA | Todos los derechos reservados" data-en="© 2025 Trading Scripts by SMA | All rights reserved">© 2025 Trading Scripts by SMA | All rights reserved</p>
+        <p data-es="Desarrollado con ❤️ para la comunidad de trading" data-en="Developed with ❤️ for the trading community">Developed with ❤️ for the trading community</p>
     </footer>
 
     <script>
+        let currentLang = 'en';
+
+        function setLanguage(lang) {
+            currentLang = lang;
+            
+            // Update button states
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+            
+            // Update all translatable elements
+            document.querySelectorAll('[data-es]').forEach(element => {
+                const text = element.getAttribute('data-' + lang);
+                if (!text) return;
+                
+                // Use innerHTML for elements that might contain HTML tags
+                if (text.includes('<strong>') || text.includes('<br>')) {
+                    element.innerHTML = text;
+                } else {
+                    // Use textContent for simple text
+                    if (element.tagName === 'A' || element.tagName === 'BUTTON' || element.tagName === 'H1' || element.tagName === 'H2' || element.tagName === 'H3') {
+                        element.textContent = text;
+                    } else {
+                        element.innerHTML = text;
+                    }
+                }
+            });
+
+            // Update placeholder
+            const searchBox = document.getElementById('searchBox');
+            if (searchBox) {
+                searchBox.placeholder = searchBox.getAttribute('data-placeholder-' + lang);
+            }
+        }
+
         function toggleSupport() {
             const content = document.getElementById('supportContent');
             const arrow = document.getElementById('arrow');
