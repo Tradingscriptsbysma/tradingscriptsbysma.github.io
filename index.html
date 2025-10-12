@@ -1,8 +1,4 @@
-nav a:last-child:hover {
-            background: linear-gradient(135deg, #ff6b35 0%, #f7931a 100%);
-            transform: scale(1.05);
-            box-shadow: 0 6px 20px rgba(255, 107, 53, 0.6);
-        }<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -109,10 +105,10 @@ nav a:last-child:hover {
         }
 
         nav a:last-child {
-            background: linear-gradient(135deg, #ff6b35 0%, #f7931a 100%);
+            background: linear-gradient(135deg, #e11d48 0%, #be123c 100%) !important;
             background-size: 200% 200%;
             color: white;
-            box-shadow: 0 4px 15px rgba(255, 107, 53, 0.4);
+            box-shadow: 0 4px 15px rgba(225, 29, 72, 0.4);
             animation: gradient-shift 3s ease infinite;
         }
 
@@ -121,88 +117,24 @@ nav a:last-child:hover {
             50% { background-position: 100% 50%; }
         }
 
-        nav a:hover {
+        nav a:hover:not(:last-child):not(:first-child) {
             background: #e11d48;
             color: white;
         }
 
+        nav a:first-child:hover {
+            background: linear-gradient(135deg, #5a1a1a 0%, #3d0a0a 100%);
+        }
+
         nav a:last-child:hover {
-            transform: scale(1.05);
-            box-shadow: 0 6px 20px rgba(247, 147, 26, 0.6);
+            background: linear-gradient(135deg, #e11d48 0%, #be123c 100%) !important;
+            box-shadow: 0 4px 15px rgba(225, 29, 72, 0.4);
         }
 
         .container {
             max-width: 1200px;
             margin: 3rem auto;
             padding: 0 2rem;
-        }
-
-        .intro {
-            background: rgba(30, 30, 30, 0.95);
-            padding: 2rem;
-            border-radius: 15px;
-            margin-bottom: 3rem;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-        }
-
-        .intro h2 {
-            color: #e6e6e6;
-            margin-bottom: 1rem;
-        }
-
-        .intro p {
-            color: #bbb;
-            line-height: 1.6;
-            font-size: 1.1rem;
-        }
-
-        .latest-updates {
-            background: rgba(30, 30, 30, 0.95);
-            padding: 2rem;
-            border-radius: 15px;
-            margin-bottom: 3rem;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-        }
-
-        .latest-updates h2 {
-            color: #e6e6e6;
-            margin-bottom: 1.5rem;
-            text-align: center;
-        }
-
-        .update-item {
-            padding: 1rem;
-            margin-bottom: 1rem;
-            border-left: 4px solid #e11d48;
-            background: #252525;
-            border-radius: 8px;
-        }
-
-        .update-item:last-child {
-            margin-bottom: 0;
-        }
-
-        .update-date {
-            color: #888;
-            font-size: 0.85rem;
-            margin-bottom: 0.3rem;
-        }
-
-        .update-text {
-            color: #bbb;
-            font-size: 1rem;
-        }
-
-        .support-card {
-            background: rgba(30, 30, 30, 0.95);
-            padding: 1.5rem;
-            border-radius: 15px;
-            margin-bottom: 3rem;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-            text-align: center;
-            border: 2px dashed #ff5555;
-            cursor: pointer;
-            transition: all 0.3s;
         }
 
         .bot-promo-card {
@@ -242,6 +174,7 @@ nav a:last-child:hover {
             border-radius: 50%;
             border: 3px solid #f7931a;
             box-shadow: 0 0 20px rgba(247, 147, 26, 0.6);
+            object-fit: cover;
         }
 
         .bot-promo-title {
@@ -313,6 +246,74 @@ nav a:last-child:hover {
         @keyframes shine {
             0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
             100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+        }
+
+        .intro {
+            background: rgba(30, 30, 30, 0.95);
+            padding: 2rem;
+            border-radius: 15px;
+            margin-bottom: 3rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+
+        .intro h2 {
+            color: #e6e6e6;
+            margin-bottom: 1rem;
+        }
+
+        .intro p {
+            color: #bbb;
+            line-height: 1.6;
+            font-size: 1.1rem;
+        }
+
+        .latest-updates {
+            background: rgba(30, 30, 30, 0.95);
+            padding: 2rem;
+            border-radius: 15px;
+            margin-bottom: 3rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+
+        .latest-updates h2 {
+            color: #e6e6e6;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .update-item {
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border-left: 4px solid #e11d48;
+            background: #252525;
+            border-radius: 8px;
+        }
+
+        .update-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .update-date {
+            color: #888;
+            font-size: 0.85rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .update-text {
+            color: #bbb;
+            font-size: 1rem;
+        }
+
+        .support-card {
+            background: rgba(30, 30, 30, 0.95);
+            padding: 1.5rem;
+            border-radius: 15px;
+            margin-bottom: 3rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            text-align: center;
+            border: 2px dashed #ff5555;
+            cursor: pointer;
+            transition: all 0.3s;
         }
 
         .support-card:hover {
