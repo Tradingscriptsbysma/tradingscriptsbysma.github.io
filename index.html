@@ -101,20 +101,60 @@
             font-weight: 600;
             padding: 0.5rem 1rem;
             border-radius: 20px;
-            transition: all 0.3s;
+            transition: all 0.4s ease;
+            position: relative;
         }
 
         nav a:last-child {
-            background: linear-gradient(135deg, #e11d48 0%, #be123c 100%) !important;
+            background: linear-gradient(135deg, #f7931a 0%, #ff8c00 50%, #f7931a 100%) !important;
             background-size: 200% 200%;
             color: white;
-            box-shadow: 0 4px 15px rgba(225, 29, 72, 0.4);
-            animation: gradient-shift 3s ease infinite;
+            box-shadow: 0 4px 20px rgba(247, 147, 26, 0.5), 0 0 40px rgba(247, 147, 26, 0.3);
+            animation: gradient-shift 3s ease infinite, pulse-glow 2s ease-in-out infinite;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        nav a:last-child span {
+            position: relative;
+            z-index: 2;
+        }
+
+        nav a:last-child::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transform: rotate(45deg);
+            animation: shine-sweep 3s infinite;
+            z-index: 1;
         }
 
         @keyframes gradient-shift {
             0%, 100% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
+        }
+
+        @keyframes pulse-glow {
+            0%, 100% {
+                box-shadow: 0 4px 20px rgba(247, 147, 26, 0.5), 0 0 40px rgba(247, 147, 26, 0.3);
+            }
+            50% {
+                box-shadow: 0 6px 30px rgba(247, 147, 26, 0.7), 0 0 60px rgba(247, 147, 26, 0.5);
+            }
+        }
+
+        @keyframes shine-sweep {
+            0% {
+                transform: translateX(-100%) translateY(-100%) rotate(45deg);
+            }
+            100% {
+                transform: translateX(100%) translateY(100%) rotate(45deg);
+            }
         }
 
         nav a:hover:not(:last-child):not(:first-child) {
@@ -127,8 +167,9 @@
         }
 
         nav a:last-child:hover {
-            background: linear-gradient(135deg, #e11d48 0%, #be123c 100%) !important;
-            box-shadow: 0 4px 15px rgba(225, 29, 72, 0.4);
+            background: linear-gradient(135deg, #ff8c00 0%, #f7931a 100%) !important;
+            box-shadow: 0 8px 35px rgba(247, 147, 26, 0.8), 0 0 80px rgba(247, 147, 26, 0.6);
+            transform: translateY(-2px) scale(1.05);
         }
 
         .container {
@@ -304,75 +345,6 @@
             font-size: 1rem;
         }
 
-        .support-card {
-            background: rgba(30, 30, 30, 0.95);
-            padding: 1.5rem;
-            border-radius: 15px;
-            margin-bottom: 3rem;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-            text-align: center;
-            border: 2px dashed #ff5555;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-
-        .support-card:hover {
-            border-color: #ff4444;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.4);
-        }
-
-        .support-header {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.5rem;
-        }
-
-        .support-header h3 {
-            color: #ff5555;
-            margin: 0;
-            font-size: 1.2rem;
-        }
-
-        .arrow {
-            transition: transform 0.3s;
-            font-size: 1.2rem;
-            color: #ff5555;
-        }
-
-        .arrow.open {
-            transform: rotate(180deg);
-        }
-
-        .support-content {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.3s ease-out;
-        }
-
-        .support-content.open {
-            max-height: 200px;
-            margin-top: 1rem;
-        }
-
-        .support-card p {
-            color: #aaa;
-            font-size: 0.95rem;
-            margin-bottom: 1rem;
-        }
-
-        .wallet-address {
-            background: #252525;
-            padding: 0.8rem;
-            border-radius: 10px;
-            font-family: 'Courier New', monospace;
-            font-size: 0.85rem;
-            color: #ddd;
-            border: 1px solid #444;
-            word-break: break-all;
-            margin-top: 0.5rem;
-        }
-
         .section-title {
             text-align: center;
             color: #e6e6e6;
@@ -514,6 +486,74 @@
             color: #888;
         }
 
+        .footer-support {
+            background: rgba(40, 40, 40, 0.5);
+            padding: 1rem;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+            border: 1px solid #444;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            transition: all 0.3s;
+        }
+
+        .footer-support:hover {
+            border-color: #f7931a;
+            background: rgba(45, 45, 45, 0.6);
+        }
+
+        .footer-support-header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            color: #bbb;
+            font-size: 0.95rem;
+            font-weight: 600;
+        }
+
+        .footer-arrow {
+            transition: transform 0.3s;
+            font-size: 0.9rem;
+            color: #888;
+        }
+
+        .footer-arrow.open {
+            transform: rotate(180deg);
+        }
+
+        .footer-support-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+
+        .footer-support-content.open {
+            max-height: 150px;
+            margin-top: 1rem;
+        }
+
+        .footer-support-content p {
+            color: #999;
+            font-size: 0.85rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-wallet {
+            background: rgba(30, 30, 30, 0.8);
+            padding: 0.6rem;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            border: 1px solid #555;
+            word-break: break-all;
+            display: flex;
+            gap: 0.5rem;
+            align-items: center;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
         @media (max-width: 768px) {
             .language-toggle {
                 position: static;
@@ -550,7 +590,7 @@
 
     <nav>
         <a href="#indicators" data-es="Indicadores" data-en="Indicators">Indicators</a>
-        <a href="bitcoineye.html">BitcoinEye Bot</a>
+        <a href="bitcoineye.html"><span data-es="Bot de Trading - BitcoinEye" data-en="Trading Bot - BitcoinEye">Trading Bot - BitcoinEye</span></a>
     </nav>
 
     <div class="container">
@@ -598,20 +638,6 @@
             <div class="update-item">
                 <div class="update-date" data-es="Octubre 2025" data-en="October 2025">October 2025</div>
                 <div class="update-text" data-es="Nuevo Indicador: <strong>Wave Surge</strong>" data-en="New Indicator: <strong>Wave Surge</strong>">New Indicator: <strong>Wave Surge</strong></div>
-            </div>
-        </div>
-
-        <div class="support-card">
-            <div class="support-header" onclick="toggleSupport()" style="cursor: pointer;">
-                <h3 data-es="☕ Apoya Mi Trabajo" data-en="☕ Support My Work">☕ Support My Work</h3>
-                <span class="arrow" id="arrow">▼</span>
-            </div>
-            <div class="support-content" id="supportContent">
-                <p data-es="Si mis indicadores te resultan útiles, ¡considera apoyar el desarrollo!" data-en="If you find my indicators helpful, consider supporting the development!">If you find my indicators helpful, consider supporting the development!</p>
-                <p style="font-weight: 600; color: #e6e6e6; margin-bottom: 0.3rem;">Bitcoin (BTC)</p>
-                <div class="wallet-address">
-                    bc1qac9czjvdkexzf7v7atg0m2g4gj7q3sxn7yn00d
-                </div>
             </div>
         </div>
 
@@ -723,6 +749,19 @@
     </div>
 
     <footer>
+        <div class="footer-support">
+            <div class="footer-support-header" onclick="toggleFooterSupport()" style="cursor: pointer;">
+                <span data-es="☕ Apoya el desarrollo" data-en="☕ Support development">☕ Support development</span>
+                <span class="footer-arrow" id="footerArrow">▼</span>
+            </div>
+            <div class="footer-support-content" id="footerSupportContent">
+                <p data-es="Si te resulta útil, considera apoyar:" data-en="If you find it useful, consider supporting:">If you find it useful, consider supporting:</p>
+                <div class="footer-wallet">
+                    <span style="font-size: 0.85rem; color: #f7931a; font-weight: 600;">BTC:</span>
+                    <span style="font-size: 0.8rem; color: #aaa;">bc1qac9czjvdkexzf7v7atg0m2g4gj7q3sxn7yn00d</span>
+                </div>
+            </div>
+        </div>
         <p data-es="© 2025 Trading Scripts by SMA | Todos los derechos reservados" data-en="© 2025 Trading Scripts by SMA | All rights reserved">© 2025 Trading Scripts by SMA | All rights reserved</p>
         <p data-es="Desarrollado con ❤️ para la comunidad de trading" data-en="Developed with ❤️ for the trading community">Developed with ❤️ for the trading community</p>
     </footer>
@@ -745,7 +784,7 @@
                 if (text.includes('<strong>') || text.includes('<br>')) {
                     element.innerHTML = text;
                 } else {
-                    if (element.tagName === 'A' || element.tagName === 'BUTTON' || element.tagName === 'H1' || element.tagName === 'H2' || element.tagName === 'H3') {
+                    if (element.tagName === 'A' || element.tagName === 'BUTTON' || element.tagName === 'H1' || element.tagName === 'H2' || element.tagName === 'H3' || element.tagName === 'SPAN') {
                         element.textContent = text;
                     } else {
                         element.innerHTML = text;
@@ -759,9 +798,9 @@
             }
         }
 
-        function toggleSupport() {
-            const content = document.getElementById('supportContent');
-            const arrow = document.getElementById('arrow');
+        function toggleFooterSupport() {
+            const content = document.getElementById('footerSupportContent');
+            const arrow = document.getElementById('footerArrow');
             content.classList.toggle('open');
             arrow.classList.toggle('open');
         }
