@@ -602,12 +602,12 @@
         <div class="latest-updates">
             <h2 data-es="🔔 Últimas Actualizaciones" data-en="🔔 Latest Updates">🔔 Latest Updates</h2>
             <div class="update-item">
-                <div class="update-date" data-es="Octubre 2025" data-en="October 2025">October 2025</div>
-                <div class="update-text" data-es="Nuevo Indicador: <strong>Micro Fast Trendline</strong>" data-en="New Indicator: <strong>Micro Fast Trendline</strong>">New Indicator: <strong>Micro Fast Trendline</strong></div>
+                <div class="update-date" data-es="Noviembre 2025" data-en="November 2025">November 2025</div>
+                <div class="update-text" data-es="Nuevo Indicador: <strong>Liquidity Heatmap Concepts</strong>" data-en="New Indicator: <strong>Liquidity Heatmap Concepts</strong>">New Indicator: <strong>Liquidity Heatmap Concepts</strong></div>
             </div>
             <div class="update-item">
                 <div class="update-date" data-es="Octubre 2025" data-en="October 2025">October 2025</div>
-                <div class="update-text" data-es="Nuevo Indicador: <strong>Wave Surge</strong>" data-en="New Indicator: <strong>Wave Surge</strong>">New Indicator: <strong>Wave Surge</strong></div>
+                <div class="update-text" data-es="Nuevo Indicador: <strong>Micro Fast Trendline</strong>" data-en="New Indicator: <strong>Micro Fast Trendline</strong>">New Indicator: <strong>Micro Fast Trendline</strong></div>
             </div>
         </div>
 
@@ -622,30 +622,31 @@
                 <button class="filter-btn" onclick="filterByCategory('support-resistance')" data-es="Soporte/Resistencia" data-en="Support/Resistance">Support/Resistance</button>
                 <button class="filter-btn" onclick="filterByCategory('patterns')" data-es="Patrones" data-en="Patterns">Patterns</button>
                 <button class="filter-btn" onclick="filterByCategory('price-action')" data-es="Acción del Precio" data-en="Price Action">Price Action</button>
+                <button class="filter-btn" onclick="filterByCategory('liquidity-heatmap')" data-es="Liquidez" data-en="Liquidity">Liquidity</button>
             </div>
         </div>
 
         <div class="indicators-grid">
-            <div class="indicator-card" data-category="support-resistance price-action" data-name="micro fast trendline">
-                <img src="https://s3.tradingview.com/k/K62hHx94_mid.webp?v=1760381374" alt="Micro Fast Trendline" style="width: 100%; height: 200px; object-fit: cover; border-radius: 10px; margin-bottom: 1rem;">
-                <h3>Micro Fast Trendline</h3>
+            <div class="indicator-card" data-category="liquidity-heatmap" data-name="liquidity heatmap concepts">
+                <img src="https://s3.tradingview.com/q/QMOwVA8Q_mid.webp?v=1762193391" alt="Liquidity Heatmap Concepts" style="width: 100%; height: 200px; object-fit: cover; border-radius: 10px; margin-bottom: 1rem;">
+                <h3>Liquidity Heatmap Concepts</h3>
                 <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem;">
                     <span style="background: linear-gradient(135deg, #f59e0b 0%, #ef4444 100%); color: white; padding: 0.3rem 0.8rem; border-radius: 15px; font-size: 0.85rem; font-weight: 700; animation: pulse 2s ease-in-out infinite;">NEW</span>
                 </div>
                 <div class="tags">
-                    <span class="tag">Pivot Points</span>
-                    <span class="tag">Support/Resistance</span>
-                    <span class="tag">Trendline</span>
+                    <span class="tag">Liquidity</span>
+                    <span class="tag">Liquidation</span>
+                    <span class="tag">Leverage</span>
                 </div>
-                <p>Automatically draws trendlines by connecting consecutive pivot highs and lows in real-time. It detects pivots using configurable bar confirmation, projects trendlines forward based on calculated slope, and intelligently manages line quantity to prevent clutter. Bullish (green) and bearish (red) trendlines act as dynamic support and resistance levels.</p>
-                <a href="https://www.tradingview.com/script/K62hHx94-Micro-fast-trendline-sma/" target="_blank" class="btn">View on TradingView</a>
+                <p>Liquidity Heatmap Concepts maps potential liquidation zones for leveraged positions (25x-150x) using volume-weighted analysis. It draws horizontal lines at calculated liquidation prices with gradient coloring based on volume intensity, helping identify where cascading liquidations might occur. Includes a quarterly volume profile showing historical price distribution and Point of Control (POC) for context.</p>
+                <a href="https://es.tradingview.com/script/QMOwVA8Q-Liquidity-Heatmap-Concepts-sma/" target="_blank" class="btn">View on TradingView</a>
             </div>
 
             <div class="indicator-card" data-category="trend-volume support-resistance price-action" data-name="volutrend auto trendlines volume">
                 <img src="https://s3.tradingview.com/z/ZxVkoUnF_mid.webp?v=1752780683" alt="VoluTrend Indicator" style="width: 100%; height: 200px; object-fit: cover; border-radius: 10px; margin-bottom: 1rem;">
                 <h3>VoluTrend | Auto Trendlines + Volume</h3>
                 <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem;">
-                    <span style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 0.3rem 0.8rem; border-radius: 15px; font-size: 0.85rem; font-weight: 700;">⚡ 63 Boosts</span>
+                    <span style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 0.3rem 0.8rem; border-radius: 15px; font-size: 0.85rem; font-weight: 700;">⚡ 76 Boosts</span>
                 </div>
                 <div class="tags">
                     <span class="tag">Trendlines</span>
@@ -660,7 +661,7 @@
                 <img src="https://s3.tradingview.com/g/gcgP0FSR_mid.webp?v=1756618680" alt="Order Flow Entry Quality Scanner" style="width: 100%; height: 200px; object-fit: cover; border-radius: 10px; margin-bottom: 1rem;">
                 <h3>Order Flow Entry Quality Scanner</h3>
                 <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem;">
-                    <span style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 0.3rem 0.8rem; border-radius: 15px; font-size: 0.85rem; font-weight: 700;">⚡ 44 Boosts</span>
+                    <span style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 0.3rem 0.8rem; border-radius: 15px; font-size: 0.85rem; font-weight: 700;">⚡ 66 Boosts</span>
                 </div>
                 <div class="tags">
                     <span class="tag">Order Flow</span>
@@ -686,11 +687,26 @@
                 <a href="https://www.tradingview.com/script/MSuCPO5Y/" target="_blank" class="btn">View on TradingView</a>
             </div>
 
+            <div class="indicator-card" data-category="support-resistance price-action" data-name="micro fast trendline">
+                <img src="https://s3.tradingview.com/k/K62hHx94_mid.webp?v=1760381374" alt="Micro Fast Trendline" style="width: 100%; height: 200px; object-fit: cover; border-radius: 10px; margin-bottom: 1rem;">
+                <h3>Micro Fast Trendline</h3>
+                <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem;">
+                    <span style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 0.3rem 0.8rem; border-radius: 15px; font-size: 0.85rem; font-weight: 700;">⚡ 9 Boosts</span>
+                </div>
+                <div class="tags">
+                    <span class="tag">Pivot Points</span>
+                    <span class="tag">Support/Resistance</span>
+                    <span class="tag">Trendline</span>
+                </div>
+                <p>Automatically draws trendlines by connecting consecutive pivot highs and lows in real-time. It detects pivots using configurable bar confirmation, projects trendlines forward based on calculated slope, and intelligently manages line quantity to prevent clutter. Bullish (green) and bearish (red) trendlines act as dynamic support and resistance levels.</p>
+                <a href="https://www.tradingview.com/script/K62hHx94-Micro-fast-trendline-sma/" target="_blank" class="btn">View on TradingView</a>
+            </div>
+
             <div class="indicator-card" data-category="trend-volume" data-name="wave surge">
                 <img src="https://s3.tradingview.com/c/cZwLtEdS_mid.webp?v=1759387594" alt="Wave Surge" style="width: 100%; height: 200px; object-fit: cover; border-radius: 10px; margin-bottom: 1rem;">
                 <h3>Wave Surge</h3>
                 <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem;">
-                    <span style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 0.3rem 0.8rem; border-radius: 15px; font-size: 0.85rem; font-weight: 700;">⚡ 5 Boosts</span>
+                    <span style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 0.3rem 0.8rem; border-radius: 15px; font-size: 0.85rem; font-weight: 700;">⚡ 6 Boosts</span>
                 </div>
                 <div class="tags">
                     <span class="tag">Wave Analysis</span>
